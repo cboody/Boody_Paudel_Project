@@ -13,7 +13,7 @@ below. The results include a statement of the number of faculty they had a score
 (can be adjusted depending on how strict you want the search to be, and we can optimize it over time). Below this, the
 faculty names and biographies are in score-order.
 
-INSTALLATION: Clone this git repository: https://github.com/psam96/biocomputing_final_project.git
+INSTALLATION: Clone this git repository:(https://github.com/cboody/Boody_Paudel_Project.git)
 
 DEPENDENCIES REQUIRED: nltk, scikit-learn, beautifulsoup4, Flask, SQLite3.
 
