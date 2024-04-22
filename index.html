@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Match Maker</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+</head>
+<body>
+    <div class="container">
+        {% include "header.html" %}
+        <br>
+
+        Please fill out the form below to find researchers with similar research interest.
+        <br>
+        <br>
+        <form class="input_form" action="/submit_form" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <br>
+            <label for="research">Research Interest:</label>
+            <textarea id="research" name="research" rows="5"></textarea>
+            <br>
+            <input type="reset" value="Clear the form" >
+            <br>
+            <br>
+            <input type="submit" value="Find similar researchers">
+            <br>
+        </form>
+
+</body>
+{% include "footer.html" %}
+
+</div>
+</html>
