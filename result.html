@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Match Maker</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png">
+</head>
+<body>
+    <div class="container" style="text-align: justify">
+        {% include "header.html" %}
+        <br>
+        <h1>Thank you for your submission.</h1>
+        <p><strong>Name:</strong> {{ name }}</p>
+        <p><strong>Research Biography:</strong> {{ research }}</p>
+
+        <hr>
+        {% if entry_results > 0 %}
+        <h2><u>Congratulations! we were able to find {{ entry_results }} professor(s) matching your research interest.</u></h2>
+        {% for result in results %}
+        <div>
+        <h3>{{ result.professor }}</h3>
+        <p><strong>Similarity Score:</strong> {{ result.similarity_score }}</p>
+        <p><strong>Research Biography:</strong> {{ professor_dict[result.professor] }}</p>
+            <hr>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h2><u>Apologies, we couldn't find any professor(s) matching your research interest.</u></h2>
+        {% endif %}
+
+</body>
+{% include "footer.html" %}
+
+</div>
+</html>
