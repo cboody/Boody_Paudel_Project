@@ -1,0 +1,60 @@
+
+import subprocess
+import sys
+
+packages = ['nltk', 'scikit-learn']
+
+for package in packages:
+    try:
+        __import__(package)
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Import everything here
+from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+from nltk import word_tokenize
+from nltk.corpus import stopwords
+import nltk
+import re
+
+# Download related resources
+resources = ['punkt', 'wordnet', 'stopwords']
+for resource in resources:
+    try:
+        nltk.data.find('tokenizers/{}'.format(resource))
+    except LookupError:
+        nltk.download(resource)
+
+# Give easy name for functions
+lemmatizer = WordNetLemmatizer()
+vectorizer = TfidfVectorizer()
+
+# Functions
+# Get processed tokens from bio
+def pre_process_bio(bio):
+    # Remove punctuation and other non-alphanumeric characters
+    bio =  re.sub('[^a-zA-Z]', ' ', bio)
+    bio = bio.lower()
+    # Tokenize bio
+    token_bio = word_tokenize(bio)
+
+    # Create a list of custom stop words and add the words to stopwords from the nltk package
+    custom_stop_words = ["research", "biology", "students", "cell", "protein",
+                         "mechanisms", "development", "membrane", "function",
+                         "understanding", "biological", "processes",
+                         "genetic", "normal", "interested", "purdue", "aim", "explore", "impact"]
+    stop_words = set(stopwords.words("english"))
+    stop_words.update(custom_stop_words)
+
+    # Create a dictionary for filtered token
+    filtered_token = []
+    for word in token_bio:
+        if word.casefold() not in stop_words:
+            filtered_token.append(word)
+
+    # Use lemmatizer to convert words to root meaning
+    lemmatized_token = [lemmatizer.lemmatize(word) for word in filtered_token]
+
+    return lemmatized_token
