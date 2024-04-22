@@ -1,9 +1,5 @@
-<footer>
-    <div class="footer">
-        Created by: Samrat Paudel and Christina Boody
-        <br>
-        Copyright: Samrat Paudel and Christina Boody
-        <br>
-        Last updated: April 5, 2024
-        </div>
-</footer>
+<div class="header">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" width="85" alt="Logo" class="logo">
+    <h1>Academic Match Maker</h1>
+    <h2>Envisioned by the students for the students</h2>
+    </div>
